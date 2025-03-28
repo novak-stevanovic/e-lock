@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "e_lock.h"
+#include "elock.h"
 #include <unistd.h>
 
 int main(int argc, char *argv[])
@@ -8,16 +8,16 @@ int main(int argc, char *argv[])
     ELock lock;
 
     int err;
-    e_lock_init(lock, 0, err);
+    elock_init(lock, 0, err);
 
-    e_lock_signal(lock, err);
-    e_lock_signal(lock, err);
-    e_lock_signal(lock, err);
-    e_lock_wait(lock, err);
-    e_lock_signal(lock, err);
-    e_lock_wait(lock, err);
+    elock_signal(lock, err);
+    elock_signal(lock, err);
+    elock_signal(lock, err);
+    elock_wait(lock, err);
+    elock_signal(lock, err);
+    elock_wait(lock, err);
 
-    e_lock_destroy(lock, err);
+    elock_destroy(lock, err);
 
     printf("Done\n");
     return 0;

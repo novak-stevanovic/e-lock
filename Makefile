@@ -1,19 +1,32 @@
 CC = gcc
 
-TEST_FLAGS =
+# TEST
+TEST_FLAGS = -g
 
-H_FILES = e_lock.h
+# LIB
 
-INSTALL_DIR = /usr/local/
+LIB_NAME = elock
 
-.PHONY: install uninstall
+# INSTALL
+
+H_FILES = elock.h
+INSTALL_DIR = /usr/local
+
+# -----------------------------------------------------------------------------
+
+.PHONY: install uninstall clean
+
+all:
 
 test: $(H_FILES) tests.c
 	gcc tests.c $(TEST_FLAGS) -o $@
 
 install:
-	mkdir -p $(INSTALL_DIR)/include
-	sudo mv $(H_FILES) $(INSTALL_DIR)/include
+	sudo mkdir -p $(INSTALL_DIR)/include/$(LIB_NAME)
+	sudo cp $(H_FILES) $(INSTALL_DIR)/include/$(LIB_NAME)
 
 uninstall:
-	cd $(INSTALL_DIR/include && sudo rm -f $(H_FILES)
+	sudo rm -rf $(INSTALL_DIR)/include/$(LIB_NAME)
+
+clean:
+	rm -f test
